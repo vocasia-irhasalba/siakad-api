@@ -10,6 +10,7 @@ route.get('/',exampleController.index)
 route.use('/mahasiswa',routeMahasiswa)
 route.use('/dosen',routeDosen);
 route.use('/matkul',routeMatkul)
+route.use('/dosen-matkul',routeDsnMat)
 
 
 module.exports = route
