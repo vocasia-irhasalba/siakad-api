@@ -1,4 +1,4 @@
-const {Mahasiswa} = require("../models")
+const {Mahasiswa,Dosen,MahasiswaBimbingan} = require("../models")
 
 const mahasiswaController = {}
 
@@ -35,7 +35,17 @@ mahasiswaController.create = async (req,res) => {
 mahasiswaController.getAll = async (req,res) => {
     try {
         const getMahasiswa = await Mahasiswa.findAll({
-            order : [["createdAt","DESC"]]
+            order : [["createdAt","DESC"]],
+            include : [
+                {
+                    model : MahasiswaBimbingan,
+                    include : [
+                        {
+                            model : Dosen
+                        }
+                    ]
+                }
+            ]
         })
         return res.status(200).json({
             data : getMahasiswa 
